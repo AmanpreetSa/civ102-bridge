@@ -247,6 +247,7 @@ if __name__ == '__main__':
 
     # plotting BMD vs. matboard tension and comression failure
     plt.figure(figsize=(12, 6))
+    plt.gca().invert_yaxis()
     plt.plot(x, BME, label='Bending Moment M(x)', color='black')
     plt.plot(x, M_fail_ten, label='Matboard Tension Failure', color='red')
     plt.plot(x, M_fail_comp, label='Matboard Compression Failure', color='green')
@@ -260,6 +261,7 @@ if __name__ == '__main__':
 
     # plotting BMD vs. top flange buckling failure
     plt.figure(figsize=(12, 6))
+    plt.gca().invert_yaxis()
     plt.plot(x, BME, label='Bending Moment M(x)', color='black')
     plt.plot(x, M_fail_buck1, label='Top Flange Middle Buckle', color='red')
     plt.plot(x, M_fail_buck2, label='Top Flange Edge Buckle', color='green')
@@ -273,6 +275,7 @@ if __name__ == '__main__':
 
     # plotting BMD vs. web buckling failure
     plt.figure(figsize=(12, 6))
+    plt.gca().invert_yaxis()
     plt.plot(x, BME, label='Bending Moment M(x)', color='black')
     plt.plot(x, M_fail_buck3, label='Webs Buckle', color='red')
     plt.title('Bending Moment Diagram')
