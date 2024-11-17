@@ -134,7 +134,7 @@ if __name__ == '__main__':
         #create cur_SFD at one single location of the train
         for i in range(len(x_train)):
             if 0 <= train_location[i] <= 1200:
-                indices = np.where(x >= train_location[i])
+                indices = x >= train_location[i]
                 cur_SFD[indices] -= point_loads[i]
         #calculate BMD
         cur_BMD = np.cumsum(cur_SFD) * dx
@@ -142,9 +142,10 @@ if __name__ == '__main__':
         SFD[xj].append(cur_SFD.tolist())
         BMD[xj].append(cur_BMD.tolist())
     #initial sets for maximum SFD and BMD
-    SFE = SFD[0][0]
-    BME = BMD[0][0]
+    SFE = [0] * 1201
+    BME = [0] * 1201
     # find maximum SFD and BMD
+    BME_dis = 0
     for i in range(1201):
         for xj in range(2057):
             if abs(SFE[i]) <= abs(SFD[xj][0][i]):
@@ -160,7 +161,10 @@ if __name__ == '__main__':
         if max_BMD <= BME[i]:
             max_BMD = BME[i]
             max_BMD_dis = i
-
+    for xj in range(2057):
+        if BMD[xj][0][643] == max_BMD:
+            print(xj)
+            break
     shape_of_design0 = [
     #length(b),height(h),dis of centroid to bot edge(y)
     [100, 1.27, 75.635], # top piece
@@ -189,11 +193,11 @@ if __name__ == '__main__':
     tau_glue = calculate_tau(max_SFD, Qglue, I, 10)
     sigma_buck1 = calculate_flex_buck(4, E, mu, 1.27, 80)
     sigma_buck2 = calculate_flex_buck(0.425, E, mu, 1.27, 10)
-    sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 75-ybar)
+    sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 75 - ybar)
     tau_buck = calculate_shear_buck(E, mu, 1.27, float('inf'), 73.73) # The design0 don't have a diaphragm so the a goes to infinite
     FOS = calculate_FOS(sigma_ten, sigma_bot, sigma_comp, sigma_top, sigma_buck1, sigma_buck2, sigma_buck3, tau_max, tau_cent, tau_glue_max, tau_glue, tau_buck)
     M_fail_ten, M_fail_comp, M_fail_buck1, M_fail_buck2, M_fail_buck3, V_fail_shear, V_fail_glue, V_fail_buck = visualize(FOS, max_BMD, max_SFD)
-    print("Centroid Axis ybar:", ybar);
+    print("Centroid Axis ybar:", ybar)
     print("Second moment of inertia:", I)
     print("Q at centroid", Qcent)
     print("Q at glue:", Qglue)
@@ -278,6 +282,17 @@ if __name__ == '__main__':
     plt.gca().invert_yaxis()
     plt.plot(x, BME, label='Bending Moment M(x)', color='black')
     plt.plot(x, M_fail_buck3, label='Webs Buckle', color='red')
+    plt.title('Bending Moment Diagram')
+    plt.xlabel('Position along the beam (m)')
+    plt.ylabel('Bending Moment (kN·m)')
+    plt.grid(True)
+    plt.axhline(0, color='black', linewidth=0.5)
+    plt.legend()
+    plt.show()
+
+    plt.figure(figsize=(12, 6))
+    plt.gca().invert_yaxis()
+    plt.plot(x, BME, label='Bending Moment M(x)', color='black')
     plt.title('Bending Moment Diagram')
     plt.xlabel('Position along the beam (m)')
     plt.ylabel('Bending Moment (kN·m)')
