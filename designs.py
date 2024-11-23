@@ -25,9 +25,9 @@
     #Second design
     shape_of_design0 = [
     #length(b),height(h),dis of centroid to bot edge(y)
-    [120, 1.27, 99.365], # top piece
-    [120, 1.27, 98.095],
-    [120, 1.27, 96.825],
+    [100, 1.27, 99.365], # top piece
+    [100, 1.27, 98.095],
+    [100, 1.27, 96.825],
     [5, 1.27, 95.565],
     [5, 1.27, 95.565],
     [1.27, 93.66, 48.1],
@@ -59,8 +59,8 @@
     #Third design
     shape_of_design0 = [
     #length(b),height(h),dis of centroid to bot edge(y)
-    [120, 1.27, 99.4055], # top piece
-    [120, 1.27, 98.135],
+    [100, 1.27, 99.4055], # top piece
+    [100, 1.27, 98.135],
     [5, 1.27, 96.865],
     [5, 1.27, 96.865],
     [3.73, 1.27, 95.555],
