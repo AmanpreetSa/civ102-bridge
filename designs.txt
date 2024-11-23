@@ -1,0 +1,34 @@
+    shape_of_design0 = [
+    #length(b),height(h),dis of centroid to bot edge(y)
+    [120, 1.27, 119.405], # top piece
+    [120, 1.27, 118.135],
+    [5, 1.27, 116.865],
+    [5, 1.27, 116.865],
+    [1.27, 114.96, 58.75],
+    [1.27, 114.96, 58.75],
+    [75, 1.27, 0.635]
+    ]
+    ybar = calculate_ybar(shape_of_design0)
+    I = calculate_I(shape_of_design0, ybar)
+    Qcent = calculate_Q(shape_of_design0, ybar, ybar)
+    Qglue = calculate_Q(shape_of_design0, 117.5, ybar)
+    sigma_bot, sigma_top = calculate_flextual_strss(max_BMD, ybar, 120.04, I)
+    tau_cent = calculate_tau(max_SFD, Qcent, I, 2.54)
+    tau_glue = calculate_tau(max_SFD, Qglue, I, 10)
+    sigma_buck1 = calculate_flex_buck(4, E, mu, 1.27, 75)
+    sigma_buck2 = calculate_flex_buck(0.425, E, mu, 1.27, 10)
+    sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 117.5 - ybar)
+    tau_buck = calculate_shear_buck(E, mu, 1.27, float('inf'), 116.23)
+    FOS min = flexulbuck1 = 2.05
+
+    shape_of_design2 = [
+    #length(b),height(h),dis of centroid to bot edge(y)
+    [120, 1.27, 99.4055], # top piece
+    [120, 1.27, 98.135],
+    [5, 1.27, 96.865],
+    [5, 1.27, 96.865],
+    [1.27, 94.96, 48.75],
+    [1.27, 94.96, 48.75],
+    [75, 1.27, 0.635]
+    ]
+    FOS min = flexulbuck1 = 0.931
