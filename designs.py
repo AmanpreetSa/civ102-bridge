@@ -151,4 +151,4 @@
     sigma_buck1 = calculate_flex_buck(4, E, mu, 2.54, 75)
     sigma_buck2 = calculate_flex_buck(0.425, E, mu, 2.54, 10)
     sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 117.5 - ybar)
-    tau_buck = calculate_shear_buck(E, mu, 1.27, float('inf'), 117.5)
+    tau_buck = calculate_shear_buck(E, mu, 1.27, 100, 117.5)
