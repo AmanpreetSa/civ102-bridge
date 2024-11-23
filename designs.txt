@@ -14,7 +14,7 @@
     Qglue = calculate_Q(shape_of_design0, 117.5, ybar)
     sigma_bot, sigma_top = calculate_flextual_strss(max_BMD, ybar, 120.04, I)
     tau_cent = calculate_tau(max_SFD, Qcent, I, 2.54)
-    tau_glue = calculate_tau(max_SFD, Qglue, I, 10)
+    tau_glue = calculate_tau(max_SFD, Qgle, I, 10)
     sigma_buck1 = calculate_flex_buck(4, E, mu, 1.27, 75)
     sigma_buck2 = calculate_flex_buck(0.425, E, mu, 1.27, 10)
     sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 117.5 - ybar)
@@ -32,3 +32,36 @@
     [75, 1.27, 0.635]
     ]
     FOS min = flexulbuck1 = 0.931
+
+    shape_of_design0 = [
+    #length(b),height(h),dis of centroid to bot edge(y)
+    [120, 1.27, 99.365], # top piece
+    [120, 1.27, 98.095],
+    [120, 1.27, 96.825],
+    [5, 1.27, 95.565],
+    [5, 1.27, 95.565],
+    [1.27, 93.66, 48.1],
+    [1.27, 93.66, 48.1],
+    [75, 1.27, 0.635]
+    ]
+    '''
+    -------------------
+      --           --
+      -             -
+      -             -
+      -             -
+      -             -
+      -             -
+      ---------------
+    '''
+    ybar = calculate_ybar(shape_of_design0)
+    I = calculate_I(shape_of_design0, ybar)
+    Qcent = calculate_Q(shape_of_design0, ybar, ybar)
+    Qglue = calculate_Q(shape_of_design0, 96.2, ybar)
+    sigma_bot, sigma_top = calculate_flextual_strss(max_BMD, ybar, 100, I)
+    tau_cent = calculate_tau(max_SFD, Qcent, I, 2.54)
+    tau_glue = calculate_tau(max_SFD, Qglue, I, 10)
+    sigma_buck1 = calculate_flex_buck(4, E, mu, 2.54, 75)
+    sigma_buck2 = calculate_flex_buck(0.425, E, mu, 2.54, 10)
+    sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 96.2 - ybar)
+    tau_buck = calculate_shear_buck(E, mu, 1.27, float('inf'), 94.93)
