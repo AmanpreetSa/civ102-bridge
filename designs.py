@@ -84,7 +84,28 @@
     tau_buck = calculate_shear_buck(E, mu, 1.27, float('inf'), 97.46)
 
     #Fourth design
-
+    shape_of_design0 = [
+    #length(b),height(h),dis of centroid to bot edge(y)
+    [120, 1.27, 99.365], # top piece
+    [120, 1.27, 98.095],
+    [5, 1.27, 96.825],
+    [5, 1.27, 96.825],
+    [1.27, 94.92, 50],
+    [1.27, 94.92, 50],
+    [75, 1.27, 1.905],
+    [75, 1.27, 0.635],
+    ]
+    ybar = calculate_ybar(shape_of_design0)
+    I = calculate_I(shape_of_design0, ybar)
+    Qcent = calculate_Q(shape_of_design0, ybar, ybar)
+    Qglue = calculate_Q(shape_of_design0, 97.46, ybar)
+    sigma_bot, sigma_top = calculate_flextual_strss(max_BMD, ybar, 100, I)
+    tau_cent = calculate_tau(max_SFD, Qcent, I, 2.54)
+    tau_glue = calculate_tau(max_SFD, Qglue, I, 10)
+    sigma_buck1 = calculate_flex_buck(4, E, mu, 2.54, 75)
+    sigma_buck2 = calculate_flex_buck(0.425, E, mu, 2.54, 22.5)
+    sigma_buck3 = calculate_flex_buck(6, E, mu, 1.27, 97.46 - ybar)
+    tau_buck = calculate_shear_buck(E, mu, 1.27, float('inf'), 97.46)
     
     #Fifth design
     shape_of_design0 = [
