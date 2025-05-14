@@ -15,5 +15,5 @@ Performs cross-sectional analysis:
 
 Plots:
 
-  - SFD vs. failure envelopes (centroid shear, glue shear, web buckling
-  - BMD vs. failure envelopes (tension/compression, flange buckling, web buckling
+  - SFD vs. failure envelopes (centroid shear, glue shear, web buckling)
+  - BMD vs. failure envelopes (tension/compression, flange buckling, web buckling)
